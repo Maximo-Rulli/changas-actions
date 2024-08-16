@@ -5,6 +5,8 @@ export default async function Logout({navigation, IdUser}){
   // Delete the push token from the DB
   const updateObject = {}
   updateObject['push_token'] = null
+  updateObject['notifications'] = false
+
   await supabase.from('users_data').update(updateObject).eq('id_user', IdUser)
 
   await SecureStore.deleteItemAsync('id_user')
