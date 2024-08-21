@@ -3,7 +3,7 @@ import supabase from '../libs/supabase/server'
 import messages from '../utils/messages'
 
 export default async function AuthLogin(email){
-    const { data, error} = await supabase.from('users').select('*').eq('email', email).single()
+    const { data, error} = await supabase.from('users').select('id_user').ilike('email', email).single()
     
     if (error) {
         throw new Error(messages.error.error)
@@ -12,7 +12,7 @@ export default async function AuthLogin(email){
         throw new Error(messages.error.user_not_found)
     }
     
-    const { data: userdata, error: usererror} = await supabase.from('users_data').select('name, surname').eq('email', email).single()
+    const { data: userdata, error: usererror} = await supabase.from('users_data').select('name, surname').ilike('email', email).single()
     const username = userdata.name + ' ' + userdata.surname
 
     if (!usererror){
