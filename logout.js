@@ -11,6 +11,7 @@ export default async function Logout({navigation, IdUser}){
 
   await SecureStore.deleteItemAsync('id_user')
   await SecureStore.deleteItemAsync('username')
+  await SecureStore.deleteItemAsync('status')
   
   // Reset the stack as the user just logged out and cannot go back
   navigation.reset({

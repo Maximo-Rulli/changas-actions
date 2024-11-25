@@ -18,6 +18,7 @@ export default async function AuthLogin(email){
         // Save the data to secure store
         await SecureStore.setItemAsync('id_user', data.id_user)
         await SecureStore.setItemAsync('username', userdata.username)
+        await SecureStore.setItemAsync('status', userdata.status)
         return [data.id_user, userdata.username, userdata.status]
     }
     else {
